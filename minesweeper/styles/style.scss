@@ -1,0 +1,331 @@
+body {
+    // background-color: rgb(251, 255, 233);
+    background-image: url('../accets/images/fonts.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    position: relative;
+    overflow-x: hidden;
+    font-weight: bold;
+
+    &.dark {
+        background-image: url('../accets/images/fonts-dark.jpg');
+
+        &.dark>* {
+            color: rgb(243, 255, 193);
+        }
+    }
+}
+
+.game-field {
+    margin: 40px;
+
+    .title {
+        font-size: 2rem;
+        margin: 10px 0;
+    }
+
+    .playing-field__buttons {
+
+        .toggle-themes,
+        .results,
+        .restart-game {
+            text-align: center;
+            background-color: rgb(251, 248, 197);
+            width: 150px;
+            height: 50px;
+            color: rgb(76, 76, 76);
+            font-size: 1.5rem;
+            color: rgba(0, 0, 0, 1);
+            transition: 0.3s ease-in-out;
+            font-weight: bold;
+            margin: 30px 0;
+            border-radius: 10px;
+            margin-right: 15px;
+
+            &:hover {
+                color: rgb(251, 248, 197);
+                background: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+
+    .playing-field {
+        display: flex;
+        flex-direction: column;
+        user-select: none;
+
+        &.hidden {
+            display: none;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: space-between;
+            font-size: 3rem;
+
+        }
+
+    }
+
+
+    .squares {
+        width: 500px;
+        height: auto;
+        border: 1px solid #eee;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: antiquewhite;
+        border: 2px rgb(255, 250, 158);
+
+        .square {
+            width: 47px;
+            height: 47px;
+            margin: 1.5px;
+            -webkit-box-shadow: 0 0 2px #000;
+            box-shadow: 1px 1px 10px #35362f;
+            -webkit-transition: 1s ease;
+            transition: .3s ease;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            background-color: #c9fdfd;
+            color: #c9fdfd;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.7;
+                transition-duration: 0s;
+            }
+
+            &.open {
+                background-color: rgba(0, 251, 255, 0);
+                color: rgb(0, 0, 0);
+            }
+
+            &.mine {
+                background-color: rgba(0, 251, 255, 0);
+                color: rgba(0, 0, 0, 0);
+                background-image: url('../accets/images/mine.png');
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            &.flag {
+                background-color: #c9fdfd;
+                color: rgba(0, 0, 0, 0);
+                background-image: url('../accets/images/pirate-flag.png');
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            &.question {
+                background-color: #c9fdfd;
+                color: rgba(0, 0, 0, 0);
+                background-image: url('../accets/images/question.png');
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    .table.table {
+        margin-top: 60px;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        height: auto;
+        font-size: 2rem;
+    }
+
+    table.table,
+    table.table td,
+    table.table th {
+        border: 1px solid #595959;
+    }
+
+    table.table td,
+    table.table th {
+        min-height: 35px;
+        padding: 3px;
+        width: 30px;
+        height: 35px;
+    }
+
+    table.table th {
+        background: #347c99;
+        color: #fff;
+        font-weight: normal;
+    }
+}
+
+/* Start Modal */
+.overlay {
+    background-image: url('../accets/images/map-start.png');
+    min-width: 600px;
+    min-height: 800px;
+    z-index: 2;
+    background-position: center center;
+    background-size: cover;
+
+    .modal {
+        min-width: 500px;
+        min-height: 700px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: rgb(3, 0, 3);
+        font-weight: 800;
+
+        .modal-title,
+        .how-mines {
+            text-align: center;
+            color: rgb(251, 248, 197);
+            text-shadow: 5px 10px 10px rgba(0, 0, 0, 1);
+            margin: 15px;
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 0;
+            padding: 0;
+            align-self: center;
+            padding-bottom: 30px;
+
+            .one-item {
+                list-style-type: none;
+                padding-top: 35px;
+                color: rgb(251, 248, 197);
+                text-shadow: 5px 10px 10px rgba(0, 0, 0, 1);
+                transition: 0.3s ease;
+
+                &::before {
+                    content: "🪙   ";
+                }
+
+                &:hover {
+                    color: rgb(255, 250, 158);
+                    cursor: pointer;
+
+                    &::before {
+                        content: "🏴‍☠️   ";
+                    }
+                }
+            }
+
+        }
+
+        .how-mines__input {
+            width: 350px;
+            cursor: pointer;
+            height: 20px;
+            opacity: 0.75;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+    }
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.blackout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease-out;
+    transition: 1s ease;
+}
+
+.blackout.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+// Game Status Modal 
+.overlay-result {
+    background-image: url('../accets/images/info.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 2;
+    margin-top: 20%;
+
+    .modal-result {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 500px;
+        height: 320px;
+    }
+
+    .modal-result__status {
+        text-align: center;
+        color: rgb(251, 248, 197);
+        text-shadow: 5px 10px 10px rgba(0, 0, 0, 1);
+        font-size: 3rem;
+        margin: 0;
+    }
+
+    .modal-result__info {
+        color: rgb(76, 76, 76);
+        text-shadow: 5px 10px 10px rgb(243, 255, 193);
+        font-size: 1.5rem;
+        padding-left: 136px;
+    }
+
+    .restart {
+        text-align: center;
+        background: rgb(251, 248, 197);
+        width: 150px;
+        height: 50px;
+        color: rgb(76, 76, 76);
+        font-size: 1.5rem;
+        color: rgba(0, 0, 0, 1);
+        transition: 0.2s ease-in-out;
+        font-weight: bold;
+        margin-left: 30px;
+
+        &:hover {
+            color: rgb(251, 248, 197);
+            background: rgba(0, 0, 0, 1);
+        }
+
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 1300px) {
+    .game-field {
+        transform: scale(0.5);
+    }
+}
